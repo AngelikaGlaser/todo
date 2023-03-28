@@ -19,7 +19,7 @@ const Tasks = (props) => {
     return (
         <Card className="tasks">
             <TaskFilter onChangePriority={selectedPriorityChangeHandler}></TaskFilter>
-            <TaskList filteredTasks={filteredTasks} unFilteredtaks={unFilteredTasks}></TaskList>
+            <TaskList filteredTasks={filteredTasks} unFilteredtaks={unFilteredTasks} selectedPriority={currentPriority}></TaskList>
         </Card>
     )
 }

@@ -3,13 +3,13 @@ import TaskItem from "./TaskItem";
 import './TaskList.css'
 
 const TaskList =(props) => {
-    if(props.filteredTasks.length === 0 && props.selected !== "all") {
+    if(props.filteredTasks.length === 0 && props.selectedPriority !== "all") {
         return <p className="task-list__fallback">No Tasks found!</p>
     }
 
     return (
         <ul className="task-list">
-            {props.selected !== 'all' ?
+            {props.selectedPriority !== 'all' ?
                 props.filteredTasks.map((task) => {
                 return <TaskItem
                     id={task.id}
