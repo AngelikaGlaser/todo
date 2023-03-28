@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import './App.css';
 import Tasks from "./components/Tasks/Tasks";
 import NewTask from './components/NewTask/NewTask';
+import AddUser from './components/Users/AddUser';
+import UsersList from './components/Users/UsersList';
 
 const DUMMY_TASKS = [
     {
@@ -25,6 +27,21 @@ const DUMMY_TASKS = [
     ]
 const App = () => {
     const [tasks, setTasks] = useState(DUMMY_TASKS)
+    const [users, setUsers] = useState([])
+
+    const AddUserHandler = (username, age) => {
+        setUsers((previousUsers) => {
+            return [
+                ...previousUsers,
+                {
+                    id: Math.random().toString(),
+                    name: username,
+                    age: age
+                }
+            ]
+        })
+    }
+
     const addTaskHandler = (task) => {
         setTasks((previousTask) => {
             return [task, ...previousTask]
@@ -33,7 +50,12 @@ const App = () => {
 
   return (
       <div className="App">
-        <NewTask onAddTask={addTaskHandler}></NewTask>
+          <AddUser onAddUser={AddUserHandler}/>
+          <UsersList users={users}/>
+          {
+              users.length !== 0 &&
+              <NewTask onAddTask={addTaskHandler}></NewTask>
+          }
           <Tasks taskData={tasks}></Tasks>
       </div>
   );
